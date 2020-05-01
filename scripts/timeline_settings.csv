@@ -1,0 +1,5 @@
+name,rx_dir,tx_dir,rx_station_location_file,search_radius,campaign_increment,overlaps_csv
+Campaign 1,/path/to/z3d_rx_dir_1/,/path/to/z3d_tx_dir_1/,/path/to/RXlocations1.csv,200,0,overlaps_1.csv
+Campaign 2,/path/to/z3d_rx_dir_2/,/path/to/z3d_tx_dir_2/,/path/to/RXlocations2.csv,200,1000,overlaps_2.csv
+Campaign 3,/path/to/z3d_rx_dir_3/,/path/to/z3d_tx_dir_3/,/path/to/RXlocations3.csv,200,2000,overlaps_3.csv
+Campaign 4,/path/to/z3d_rx_dir_4/,/path/to/z3d_tx_dir_4/,/path/to/RXlocations4.csv,200,3000,overlaps_4.csv
