@@ -1,0 +1,15 @@
+name: dozen
+channels:
+  - pyviz/label/dev
+  - defaults
+  - conda-forge
+dependencies:
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - jupyter
+  - pyviz=0.10
+  - pip:
+    - pyproj==1.9.6

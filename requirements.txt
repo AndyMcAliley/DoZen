@@ -1,5 +1,0 @@
-numpy>=1.15
-pandas
-scipy
-matplotlib
-pyproj
