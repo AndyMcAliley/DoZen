@@ -2,7 +2,7 @@
 
 ### What is this repository for? ###
 
-DoZen (pronounced "do zen") is for processing, visualizing, and exploring CSEM data. 
+DoZen (pronounced "do zen") is for processing, visualizing, and exploring electromagnetic data that is stored in Zonge's .z3d format. It was created specifically for processing time-lapse controlled source electromagnetic data.
 
 ### How do I get set up? ###
 
@@ -10,7 +10,6 @@ Get the code:
 ```
 git clone https://username@git.multiphysics-mva.org/dozen.git
 ```
-
 
 Run the code:
 First install all necessary dependencies. I recommend using Anaconda. If you do, you can create a new environment just for DoZen:
