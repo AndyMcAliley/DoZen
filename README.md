@@ -95,7 +95,7 @@ Click on the timeline to select a transmission.
 Click the plot button to plot the selected transmission.
 
 To process data:
-Write a script (you can pattern it after process_201710xx.py)
+Write a script (you can pattern it after process_example.py)
 Then,
 ```
 python your_processing_script.py

@@ -11,14 +11,14 @@ from dozen import z3d_directory, z3dio, timeio, process
 # Inputs and settings
 
 # survey campaign
-rx_file = '/Users/andymcaliley/Google_Drive/Research/CWC-CSEM/dataProcessing/leyden/preprocess/201708xx_rx.csv'
-tx_file = '/Users/andymcaliley/Google_Drive/Research/CWC-CSEM/dataProcessing/leyden/preprocess/201708xx_tx.csv'
-overlaps_file = 'overlaps_leyden.csv'
+rx_file = '../data/preprocess/campaign_rx.csv'
+tx_file = '../data/preprocess/campaign_tx.csv'
+overlaps_file = '../data/preprocess/overlaps.csv'
 # calibration files
-cal_dir = '/Users/andymcaliley/Google_Drive/Research/CWC-CSEM/dataProcessing/ZongeZenFiles/2017_October/'
-antcal_file = '/Users/andymcaliley/Google_Drive/Research/CWC-CSEM/dataProcessing/ZongeZenFiles/2017_October/antenna.cal'
+cal_dir = '../data/calibrations/'
+antcal_file = '../data/calibrations/antenna.cal'
 # Results file
-results_file = '201708xx_DoZen.avg'
+results_file = 'DoZen.avg'
 # Save odd harmonic fourier coefficients for every window for every time series?
 save_coefficients = True
 coefficients_dir = 'coeff'
