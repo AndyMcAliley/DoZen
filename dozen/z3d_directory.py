@@ -12,15 +12,10 @@ Functions to quickly parse z3d-related metadata from all files in a directory
 import os
 from fnmatch import fnmatch
 from math import pi
-# import tkinter as tk
-# from tkinter import filedialog
 
 import numpy as np
 import pandas as pd
-from pyproj import Proj, transform
-# import matplotlib
-# matplotlib.use("TkAgg")
-# from matplotlib import pyplot as plt
+from pyproj import Proj
 
 from . import z3dio
 from . import timeio

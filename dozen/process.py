@@ -8,8 +8,6 @@ from itertools import islice
 import numpy as np
 from scipy import signal
 import pandas as pd
-import matplotlib
-from matplotlib import pyplot as plt
 
 from . import z3dio
 from . import timeio

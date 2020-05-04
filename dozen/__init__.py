@@ -6,6 +6,6 @@ from . import process
 from . import rotate
 from . import timeio
 from . import util
-from . import viz
+# from . import viz
 from . import z3d_directory
 from . import z3dio

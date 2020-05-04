@@ -5,8 +5,6 @@ The most used function to read z3d files is z3dio.read_z3d(filename)
 
 '''
 
-import pdb
-
 import os
 import math
 import numpy as np
@@ -533,7 +531,6 @@ def read_z3d(filename):
     nan_records = np.where(z3d['record_lengths']<sampling_rate)[0]
     num_nan_samples = sampling_rate*len(nan_records)-sum(z3d['record_lengths'][nan_records])
     nan_samples = np.empty(num_nan_samples,dtype=np.int)
-    # pdb.set_trace()
     i_nan_sample = 0
     for nan_record in nan_records:
         num_nans = max(sampling_rate - z3d['record_lengths'][nan_record],0)
