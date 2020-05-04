@@ -4,6 +4,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
+  - python
   - pip
   - numpy
   - pandas
@@ -13,3 +14,4 @@ dependencies:
   - pyviz=0.10
   - pip:
     - pyproj==1.9.6
+    - git+https://github.com/andymcaliley/dozen
