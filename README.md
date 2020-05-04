@@ -8,7 +8,7 @@ DoZen (pronounced "do zen") is for processing, visualizing, and exploring electr
 
 Get the code:
 ```
-git clone https://username@git.multiphysics-mva.org/dozen.git
+git clone https://github.com/AndyMcAliley/DoZen.git
 ```
 
 Run the code:
