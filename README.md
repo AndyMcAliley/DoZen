@@ -6,13 +6,13 @@ DoZen (pronounced "do zen") is for processing, visualizing, and exploring electr
 
 ### How do I get set up? ###
 
-Get the code:
+## Get the code:
 ```
 git clone https://github.com/AndyMcAliley/DoZen.git
 ```
 
-Run the code:
-First install all necessary dependencies. I recommend using Anaconda. If you do, you can create a new environment just for DoZen:
+## Install:
+First install DoZen and all necessary dependencies. I recommend using Anaconda. If you do, you can create a new environment just for DoZen:
 ```
 conda env create -f environment.yml
 conda activate dozen
@@ -39,6 +39,7 @@ jupyter labextension install @pyviz/jupyterlab_pyviz
 
 ### How do I use it? ###
 
+## From within Python:
 First and foremost, you can import and use the library from within Python:
 ```
 import dozen
@@ -58,6 +59,7 @@ OR
 dozen.z3d_directory.directory_info(initialdir=path_to_directory,ask_dir=False)
 ```
 
+## From a script:
 In addition, you can run one of the scripts which open dashboards:
 
 To view a single z3d timeseries:
@@ -83,7 +85,7 @@ From here you can select a group of locations and save its average.
 Once you've averaged several stations, you can export those locations as a csv.
 You can also export all the receiver z3d file metadata in one large csv.
 
-To view an interactive timeline of SubTER CSEM data in a browser window:
+To view an interactive timeline of CSEM data in a browser window:
 edit scripts/timeline_settings.csv to point to the relevant directories and files.
 Open a terminal in the DoZen folder, then
 ```
