@@ -1,17 +1,17 @@
 # README #
 
-### What is this repository for? ###
+## What is this repository for? ##
 
 DoZen (pronounced "do zen") is for processing, visualizing, and exploring electromagnetic data that is stored in Zonge's .z3d format. It was created specifically for processing time-lapse controlled source electromagnetic data.
 
-### How do I get set up? ###
+## How do I get set up? ##
 
-## Get the code:
+### Get the code: ###
 ```
 git clone https://github.com/AndyMcAliley/DoZen.git
 ```
 
-## Install:
+### Install: ###
 First install DoZen and all necessary dependencies. I recommend using Anaconda. If you do, you can create a new environment just for DoZen:
 ```
 conda env create -f environment.yml
@@ -37,9 +37,9 @@ jupyter labextension install jupyterlab_bokeh
 jupyter labextension install @pyviz/jupyterlab_pyviz
 ```
 
-### How do I use it? ###
+## How do I use it? ##
 
-## From within Python:
+### From within Python: ###
 First and foremost, you can import and use the library from within Python:
 ```
 import dozen
@@ -59,7 +59,7 @@ OR
 dozen.z3d_directory.directory_info(initialdir=path_to_directory,ask_dir=False)
 ```
 
-## From a script:
+### From a script: ###
 In addition, you can run one of the scripts which open dashboards:
 
 To view a single z3d timeseries:
