@@ -161,7 +161,9 @@ def plot_ts(filename,time_range=[None,None]):
     title_str = '{} Station: {}, '+\
         'Channel {:.0f} ({}), {} to {} Mountain'
     title_str = title_str.format(station_type, station,
-                                 channel, component, dt_start, dt_end)
+                                 channel, component,
+                                 np.datetime_as_string(dt_start, unit='s'),
+                                 np.datetime_as_string(dt_end, unit='s'))
     ts_tools = ['save','pan','xwheel_zoom','box_zoom','undo','reset']
     signal = hv.Dimension('signal',label='Signal',unit='V')
     time = hv.Dimension('time',label='Time',range=hv_time_range)
@@ -176,7 +178,7 @@ def plot_ts(filename,time_range=[None,None]):
     dscurve = dynspread(datashade(curve).opts(#framewise=True,
                                               xformatter=verbose_formatter(),
                                               default_tools=ts_tools))
-    dsfinal=dscurve.opts(plot=dict(finalize_hooks=[no_logo]))
+    dsfinal=dscurve.opts(plot=dict(hooks=[no_logo]))
     # print('done!')
     return dsfinal
 
@@ -197,7 +199,7 @@ class QuickPlot():
         else:
             dscurve = hv.operation.datashader.dynspread(hv.operation.datashader.datashade(curve).opts(
                 default_tools=self.ts_tools))
-        dsfinal=dscurve.opts(plot=dict(finalize_hooks=[no_logo]))
+        dsfinal=dscurve.opts(plot=dict(hooks=[no_logo]))
         return dsfinal
     
     def times(self,ts):
@@ -239,7 +241,7 @@ class QuickPlot():
             x_dim = hv.Dimension('sample',label='Sample number',range=(0,len(ts)))
         
         curve = hv.Curve((dt_times, ts),x_dim,signal)
-        p = self.ds(curve).opts(height=200,width=800)
+        p = self.ds(curve).opts(height=250,width=800)
         return p
     
     def p2(self,tx_ts,rx_ts,xlim=None,rxlim=None,txlim=None):
