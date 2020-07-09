@@ -51,11 +51,14 @@ def load_directory_info(filepath):
     df = pd.read_csv(filepath,index_col=0)
     # get start and end as dates
     no_records = (df['num_records']==0)
-    df.loc[no_records,'start'] = -1
-    df.loc[no_records,'end'] = -1
-    df.loc[no_records,'valid'] = False
-    df.loc[~no_records,'start'] = pd.to_datetime(df.loc[~no_records,'start'],utc=True).dt.tz_convert('US/Mountain')
-    df.loc[~no_records,'end'] = pd.to_datetime(df.loc[~no_records,'end'],utc=True).dt.tz_convert('US/Mountain')
+    if no_records.sum()>0:
+        df.loc[~no_records,'start'] = pd.to_datetime(df.loc[~no_records,'start'],utc=True).dt.tz_convert('US/Mountain')
+        df.loc[~no_records,'end'] = pd.to_datetime(df.loc[~no_records,'end'],utc=True).dt.tz_convert('US/Mountain')
+        df.loc[no_records,'start'] = -1
+        df.loc[no_records,'end'] = -1
+        df.loc[no_records,'valid'] = False
+    else:
+        df.loc['start'] = pd.to_datetime(df.start,utc=True).dt.tz_convert('US/Mountain')
     return df
 
 
