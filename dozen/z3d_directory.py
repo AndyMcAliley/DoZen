@@ -59,6 +59,7 @@ def load_directory_info(filepath):
         df.loc[no_records,'valid'] = False
     else:
         df.loc['start'] = pd.to_datetime(df.start,utc=True).dt.tz_convert('US/Mountain')
+        df.loc['end'] = pd.to_datetime(df.end,utc=True).dt.tz_convert('US/Mountain')
     return df
 
 

@@ -754,7 +754,15 @@ def waveform_average_filter(sig,sampling_rate=4096,filter_freq=60,
                             num_averaged_periods=15,num_period_samples=100,
                             mask=None):
     '''
-    filter out a repeating waveform of known frequency by finding a running mean waveform
+    Filter out a repeating waveform of known frequency by finding a running mean waveform,
+    i.e., time-domain averaging and subtraction
+    Interpolate to new samples before averaging.
+
+    sig: array containing signal to be filtered
+    sampling_rate: sampling rate of sig
+    filter_freq: base frequency to be removed
+    num_averaged_periods: window length over which to average, in periods
+    num_period_samples: number of samples in one period of interpolated time series.
     '''
     # useful constants
     num_samples = len(sig)
