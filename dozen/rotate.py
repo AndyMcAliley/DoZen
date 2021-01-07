@@ -200,26 +200,37 @@ class RecordReader:
         # get gps times
         self.gps_times = z3dio.read_gps_times(filename)
         self.valid_records = [True]*len(self.flag_positions)
+        self.metadata_length = self.flag_positions[0]
+
+    def metadata(self):
+        '''
+        Return z3d metadata
+        '''
+        # open file
+        with open(self.z3d,mode='rb') as bf:
+            md = bf.read(self.metadata_length)
+        return md
 
     def iterrecord(self):
         '''
         Return a tuple at each iteration: header and data.
-        For the first record, header includes all z3d metadata,
-        and the first record's header.
         '''
         # get header lengths and record data lengths as byte counts from flag positions
         num_records = len(self.flag_positions)
         assert len(self.valid_records) == num_records, \
                 'valid_records must be of same length as flag_positions'
-        header_lengths = [self.flag_positions[0]+64]+[64]*(num_records-1)
+        # header_lengths = [self.flag_positions[0]+64]+[64]*(num_records-1)
+        header_lengths = [64]*num_records
         data_lengths = self.record_lengths-64
         # open file
         with open(self.z3d,mode='rb') as bf:
+            # skip over metadata
+            bf.read(self.metadata_length)
             for i_record, valid_record in enumerate(self.valid_records):
                 header = bf.read(header_lengths[i_record])
                 record_data_bytes = bf.read(data_lengths[i_record])
-                record_data = np.single(np.frombuffer(record_data_bytes,dtype=np.int32))
                 if valid_record:
+                    record_data = np.single(np.frombuffer(record_data_bytes,dtype=np.int32))
                     yield (header,record_data)
 
 
@@ -317,6 +328,9 @@ def rotate_df(df):
                                        units='degrees')
             # read, write out everything besides data verbatim
             with open(out_z3ds[0],'wb') as rw1, open(out_z3ds[1],'wb') as rw2, open(out_z3ds[2],'wb') as rw3:
+                rw1.write(z1.metadata())
+                rw2.write(z2.metadata())
+                rw3.write(z3.metadata())
                 for record1,record2,record3 in zip(z1.iterrecord(),z2.iterrecord(),z3.iterrecord()):
                     # write headers
                     rw1.write(record1[0])
