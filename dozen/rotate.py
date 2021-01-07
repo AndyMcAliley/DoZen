@@ -238,6 +238,13 @@ def set_overlap(z1, z2, z3):
     # use z1.gps_times, z2.gps_times, z3.gps_times to assign False values 
     # in these 3 arrays whenever all three gps_times do not overlap
 
+    # LOGIC NEEDED HERE
+
+    assert sum(overlaps_1) == sum(overlaps_2), \
+            '1 and 2 do not have the same number of overlapping records'
+    assert sum(overlaps_1) == sum(overlaps_3), \
+            '1 and 3 do not have the same number of overlapping records'
+
     # assign those arrays
     z1.valid_records = overlaps_1
     z2.valid_records = overlaps_2
