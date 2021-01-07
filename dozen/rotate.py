@@ -199,6 +199,7 @@ class RecordReader:
         self.record_lengths = np.diff(record_bounds)
         # get gps times
         self.gps_times = z3dio.read_gps_times(filename)
+        self.valid_records = [True]*len(self.flag_positions)
 
     def iterrecord(self):
         '''
@@ -208,15 +209,39 @@ class RecordReader:
         '''
         # get header lengths and record data lengths as byte counts from flag positions
         num_records = len(self.flag_positions)
+        assert len(self.valid_records) == num_records, \
+                'valid_records must be of same length as flag_positions'
         header_lengths = [self.flag_positions[0]+64]+[64]*(num_records-1)
         data_lengths = self.record_lengths-64
         # open file
         with open(self.z3d,mode='rb') as bf:
-            for i_record in range(num_records):
+            for i_record, valid_record in enumerate(self.valid_records):
                 header = bf.read(header_lengths[i_record])
                 record_data_bytes = bf.read(data_lengths[i_record])
                 record_data = np.single(np.frombuffer(record_data_bytes,dtype=np.int32))
-                yield (header,record_data)
+                if valid_record:
+                    yield (header,record_data)
+
+
+def set_overlap(z1, z2, z3):
+    '''
+    Ensure that only overlapping records are returned by iterrecord
+    z1, z2, and z3 are RecordReader objects
+    This sets the valid_records property of each to only be True when 
+    there is overlap in gps_times between z1, z2, and z3.
+    '''
+
+    overlaps_1 = [True]*len(z1.flag_positions)
+    overlaps_2 = [True]*len(z2.flag_positions)
+    overlaps_3 = [True]*len(z3.flag_positions)
+
+    # use z1.gps_times, z2.gps_times, z3.gps_times to assign False values 
+    # in these 3 arrays whenever all three gps_times do not overlap
+
+    # assign those arrays
+    z1.valid_records = overlaps_1
+    z2.valid_records = overlaps_2
+    z3.valid_records = overlaps_3
 
 
 def rotate_df(df):
@@ -263,8 +288,11 @@ def rotate_df(df):
 
             # check that all record lengths are the same
 
-            assert all([(z1.gps_times.astype(np.int)==z2.gps_times.astype(np.int)).all(),
-                        (z1.gps_times.astype(np.int)==z3.gps_times.astype(np.int)).all()]), 'gps times mismatch'
+            # assert all([(z1.gps_times.astype(np.int)==z2.gps_times.astype(np.int)).all(),
+            #             (z1.gps_times.astype(np.int)==z3.gps_times.astype(np.int)).all()]), 'gps times mismatch'
+
+            # synchronize data
+            set_overlap(z1, z2, z3)
 
             # form rotation matrix
             # scale = util.radian_conversion_factor('degrees')
